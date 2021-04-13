@@ -20,7 +20,7 @@
 #define ADC_RES                     ADC_RES_12BIT
 #define ADC_IN_USE1                 ADC_LINE(1)
 #define ADC_RES1                    ADC_RES_12BIT
-
+#define GPIO_IN_USE                 GPIO_PIN(0,10)
 #ifndef EMCUTE_ID
 #define EMCUTE_ID           ("gertrud")
 #endif
@@ -224,12 +224,16 @@ static int cmd_pub(int argc, char **argv)
     /*structure of time*/
     char datetime[20];
     time_t current;
-
+    /*ACTUATOR STATUS ON/OF*/
+    char pump[2] = "OF"; 
     /*SENSOR VARIABLES*/
     int sample = 0;
     int moisture = 0;
     int level = 0;
-
+   
+  
+    
+    
 /* Sample continously the ADC line and publish sensor data on given topic*/
     while (1) {
     
@@ -256,13 +260,12 @@ static int cmd_pub(int argc, char **argv)
       argv[3] = "1"; 
    
 // fills the json document
-      sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"moisture\": "
-                  "\"%d\", \"level\": \"%d\"}",
-                  atoi(argv[3]), datetime, moisture, level);
-                  
+
+sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"moisture\": %i, \"level\": %i,\"pump\": \"%s\"}",
+                  atoi(argv[3]), datetime, moisture, level,pump);                  
       argv[2] = json;  
          
-   
+ 
 /* step 2: publish data */
       if (emcute_pub(&topic, argv[2], strlen(argv[2]), flags) != EMCUTE_OK) {
         printf("error: unable to publish data to topic '%s [%i]'\n",
@@ -274,6 +277,9 @@ static int cmd_pub(int argc, char **argv)
             (int)strlen(argv[2]), topic.name, topic.id);
 
       xtimer_periodic_wakeup(&last, DELAY);
+  
+ /*   gpio_toggle(pin);*/   
+  
   
 // it sleeps for five seconds
       xtimer_sleep(5);            
@@ -394,6 +400,12 @@ int main(void)
   if (moisture > 0) {
         printf ("\r\nmoisture positive %i\r\n",moisture);  
         }            
+
+    gpio_t pin = GPIO_PIN(0,10);
+    gpio_init(pin,GPIO_OUT);
+    gpio_set(pin);
+
+
    /* the main thread needs a msg queue to be able to run `ping6`*/
     msg_init_queue(queue, ARRAY_SIZE(queue));
 
