@@ -1,0 +1,13 @@
+Step by Step Guide To run the project
+1) restart the VM 
+2)connect the USB 
+3) sudo ./tapsetup (in the right folder)
+4) sudo ip -6 addr add 2001:db8:0:f101::1/64 dev tapbr0
+5) sudo ./broker_mqtts config.conf (in the right folder) 
+6) make BOARD=nucleo-f401re flash term (in the project folder)
+7) reset board button 
+8) after you receive the prompt  you give "con 2001:db8:0:f101::1 1885"  (Of course you have to write the main.c program as required ) 
+9) then give the command "sub both_directions" 
+10) and "pub both_directions"
+Of course you have to write the config.conf, mosquitto.conf, bridge.conf . 
+remember to use this line of code  in the main.c netif_add("4","2001:0db8:0:f101::5"); 
