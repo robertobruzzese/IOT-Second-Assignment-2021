@@ -1,2 +1,2 @@
-# IOT-First-Assignment-2021
-Simple Water Plant Irrigation System 
+# IOT-Second-Assignment-2021
+IOT-Lab M3 node application 
