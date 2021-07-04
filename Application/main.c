@@ -63,7 +63,7 @@ static mutex_t isl_lock = MUTEX_INIT_LOCKED;
 static mutex_t l3g_lock = MUTEX_INIT_LOCKED;
 
 
-static char stack[THREAD_STACKSIZE_MAIN];
+//static char stack[THREAD_STACKSIZE_MAIN];
 
 /* stack memory allocated for the lsm303dlhc, l3g4200d, isl29020, lpsxxx thread */
 
@@ -362,7 +362,7 @@ int main(void)
     
     /* Initialize the isl29020 sensor here */
     puts("Initializing ISL29020 sensor");
-    isl29020_init(&isl29020, &isl29020_params[0])
+    isl29020_init(&isl29020, &isl29020_params[0]);
     if (isl29020_init(&isl29020, &isl29020_params[0]) == 0) {
         puts("[OK]\n");
     }
