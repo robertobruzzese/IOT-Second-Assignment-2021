@@ -219,7 +219,7 @@ static int lsm303dlhc_handler(int argc, char *argv[])
 
     /* Implement the lsm303dlhc start/stop temperature|magnetometer|accelerometer subcommands here */
     
-     if (!strcmp(argv[1], "start")) {
+    if (!strcmp(argv[1], "start")) {
         mutex_unlock(&lsm_lock);
     }
     else if (!strcmp(argv[1], "stop")) {
@@ -304,18 +304,17 @@ static int l3g4200d_handler(int argc, char *argv[])
 
     /* Implement the gyroscope l3g4200d start/stop subcommands here */
     
-     if (!strcmp(argv[1], "gyroscope")) {
-       l3g4200d_t l3g4200d;
-       l3g4200d_data_t acc_data;
-       l3g4200d_read(&l3g4200d, &acc_data);
-       printf("Gyroscope data [dps] - X: %6i   Y: %6i   Z: %6i\n",
-           acc_data.acc_x, acc_data.acc_y, acc_data.acc_z);
-
+     if (!strcmp(argv[1], "start")) {
+        mutex_unlock(&lsm_lock);
+    }
+    else if (!strcmp(argv[1], "stop")) {
+        mutex_trylock(&lsm_lock);
     }
     else {
-        _l3g4200d_usage(argv[0]);
+        _lsm303dlhc_usage(argv[0]);
         return -1;
     }
+
 
     return 0;
 }
