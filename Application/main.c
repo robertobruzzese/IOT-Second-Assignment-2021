@@ -14,17 +14,22 @@
 
 #include "lpsxxx.h"
 #include "lpsxxx_params.h"
+
 /* Add lsm303dlhc related include here */
 /*LSM303DLHC 3D accelerometer/magnetometer */
+
 #include  "lsm303dlhc.h"
 #include  "lsm303dlhc_params.h"
 
 /* Add isl29020 related include here*/
 /*ISL29020 light sensor*/
+
 #include “isl29020.h”
 #include “isl29020_params.h”
+
 /* Add l3g44200 related include here*/
 /*l3g44200 gyroscope  sensor*/
+
 #include “l3g4200d.h”
 #include “l3g4200d_params.h”
 
@@ -38,8 +43,11 @@ static lpsxxx_t lpsxxx;
 static lsm303dlhc_t lsm303dlhc;
 
 /* Declare the isl29020 device variable here*/
+
 static isl29020_t isl29020;
+
 /*Declare the l3g4200d device variable here*/
+
 static l3g4200d_t l3g4200d;
 
 
@@ -48,27 +56,40 @@ mutex mu;
 
 static char stack[THREAD_STACKSIZE_MAIN];
 
-/* stack memory allocated for the lsm303dlhc thread */
+/* stack memory allocated for the lsm303dlhc, l3g4200d, isl29020,  lpsxxx thread */
+
 static char lsm303dlhc_stack[THREAD_STACKSIZE_MAIN];
+static char l3g4200d_stack[THREAD_STACKSIZE_MAIN];
+static char isl29020_stack[THREAD_STACKSIZE_MAIN];
+static char lpsxxx_stack[THREAD_STACKSIZE_MAIN];
+
 
 static void *lsm303dlhc_thread(void *arg)
 {
     (void)arg;
+    
 /* Add the lsm303dlhc sensor polling endless loop here */
+    
     while (1) {
+        
         /* Acquire the mutex here */
+    
         mu.lock();
 
         /* Read the accelerometer/magnetometer values here */
+      
         lsm303dlhc_3d_data_t mag_value;
         lsm303dlhc_3d_data_t acc_value;
         lsm303dlhc_read_acc(&lsm303dlhc, &acc_value);
         lsm303dlhc_read_mag(&lsm303dlhc, &mag_value);
+    
         /*int acc = lsm303dlhc_read_acc*/ 
+        
         printf("Accelerometer x: %i y: %i z: %i\n",
            acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);
         printf("Magnetometer x: %i y: %i z: %i\n",
            mag_value.x_axis, mag_value.y_axis, mag_value.z_axis);
+      
         xtimer_usleep(500 * US_PER_MS);
   
         /*  int pres = lpsxxx_read_pres(&dev1);
@@ -77,6 +98,129 @@ static void *lsm303dlhc_thread(void *arg)
 */        /* Release the mutex here */
 
         mu.unlock();
+      
+        xtimer_usleep(500 * US_PER_MS);
+    }
+
+    return 0;
+}
+
+static void *l3g4200d_thread(void *arg)
+{
+    (void)arg;
+    
+/* Add the lsm303dlhc sensor polling endless loop here */
+    
+    while (1) {
+        
+        /* Acquire the mutex here */
+    
+        mu.lock();
+
+        /* Read the accelerometer/magnetometer values here */
+      
+        lsm303dlhc_3d_data_t mag_value;
+        lsm303dlhc_3d_data_t acc_value;
+        lsm303dlhc_read_acc(&lsm303dlhc, &acc_value);
+        lsm303dlhc_read_mag(&lsm303dlhc, &mag_value);
+    
+        /*int acc = lsm303dlhc_read_acc*/ 
+        
+        printf("Accelerometer x: %i y: %i z: %i\n",
+           acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);
+        printf("Magnetometer x: %i y: %i z: %i\n",
+           mag_value.x_axis, mag_value.y_axis, mag_value.z_axis);
+      
+        xtimer_usleep(500 * US_PER_MS);
+  
+        /*  int pres = lpsxxx_read_pres(&dev1);
+    int temp = lpsxxx_read_temp(&dev1);
+
+*/        /* Release the mutex here */
+
+        mu.unlock();
+      
+        xtimer_usleep(500 * US_PER_MS);
+    }
+
+    return 0;
+}
+
+static void *isl29020_thread(void *arg)
+{
+    (void)arg;
+    
+/* Add the lsm303dlhc sensor polling endless loop here */
+    
+    while (1) {
+        
+        /* Acquire the mutex here */
+    
+        mu.lock();
+
+        /* Read the accelerometer/magnetometer values here */
+      
+        lsm303dlhc_3d_data_t mag_value;
+        lsm303dlhc_3d_data_t acc_value;
+        lsm303dlhc_read_acc(&lsm303dlhc, &acc_value);
+        lsm303dlhc_read_mag(&lsm303dlhc, &mag_value);
+    
+        /*int acc = lsm303dlhc_read_acc*/ 
+        
+        printf("Accelerometer x: %i y: %i z: %i\n",
+           acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);
+        printf("Magnetometer x: %i y: %i z: %i\n",
+           mag_value.x_axis, mag_value.y_axis, mag_value.z_axis);
+      
+        xtimer_usleep(500 * US_PER_MS);
+  
+        /*  int pres = lpsxxx_read_pres(&dev1);
+    int temp = lpsxxx_read_temp(&dev1);
+
+*/        /* Release the mutex here */
+
+        mu.unlock();
+      
+        xtimer_usleep(500 * US_PER_MS);
+    }
+
+    return 0;
+}
+static void *lpsxxx_thread(void *arg)
+{
+    (void)arg;
+    
+/* Add the lsm303dlhc sensor polling endless loop here */
+    
+    while (1) {
+        
+        /* Acquire the mutex here */
+    
+        mu.lock();
+
+        /* Read the accelerometer/magnetometer values here */
+      
+        lsm303dlhc_3d_data_t mag_value;
+        lsm303dlhc_3d_data_t acc_value;
+        lsm303dlhc_read_acc(&lsm303dlhc, &acc_value);
+        lsm303dlhc_read_mag(&lsm303dlhc, &mag_value);
+    
+        /*int acc = lsm303dlhc_read_acc*/ 
+        
+        printf("Accelerometer x: %i y: %i z: %i\n",
+           acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);
+        printf("Magnetometer x: %i y: %i z: %i\n",
+           mag_value.x_axis, mag_value.y_axis, mag_value.z_axis);
+      
+        xtimer_usleep(500 * US_PER_MS);
+  
+        /*  int pres = lpsxxx_read_pres(&dev1);
+    int temp = lpsxxx_read_temp(&dev1);
+
+*/        /* Release the mutex here */
+
+        mu.unlock();
+      
         xtimer_usleep(500 * US_PER_MS);
     }
 
@@ -287,9 +431,18 @@ int main(void)
     return 1;
     }
     
-    
+   /* Perform sensor readings lsm303dlhc on a separate thread in order to host a shell on the main thread*/  
     thread_create(lsm303dlhc_stack, sizeof(lsm303dlhc_stack), THREAD_PRIORITY_MAIN - 1,
                   0, lsm303dlhc_thread, NULL, "lsm303dlhc");
+    /* Perform sensor readings l3g4200d on a separate thread in order to host a shell on the main thread*/  
+    thread_create(l3g4200d_stack, sizeof(l3g4200d_stack), THREAD_PRIORITY_MAIN - 2,
+                  0, l3g4200d_thread, NULL, "l3g4200d");
+    /* Perform sensor readings isl29020 on a separate thread in order to host a shell on the main thread*/  
+    thread_create(isl29020_stack, sizeof(isl29020_stack), THREAD_PRIORITY_MAIN - 3,
+                  0, isl29020_thread, NULL, "isl29020");
+    /* Perform sensor readings lpsxxx on a separate thread in order to host a shell on the main thread*/  
+    thread_create(lpsxxx_stack, sizeof(lpsxxx_stack), THREAD_PRIORITY_MAIN - 4,
+                  0, lpsxxx_thread, NULL, "lpsxxx");
 
     /* Everything is ready, let's start the shell now */
     char line_buf[SHELL_DEFAULT_BUFSIZE];
