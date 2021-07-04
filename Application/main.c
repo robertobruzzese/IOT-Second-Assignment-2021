@@ -277,16 +277,17 @@ static int isl29020_handler(int argc, char *argv[])
     }
 
     /* Implement the isl29020 start/stop subcommands here */
-     if (!strcmp(argv[1], "luminosity")) {
-        isl29020_t lumin;
-        printf("Intensity of luminescence: %5i LUX\n", isl29020_read(&lumin));
-   }  
-     
+   
+    if (!strcmp(argv[1], "start")) {
+        mutex_unlock(&lsm_lock);
+    }
+    else if (!strcmp(argv[1], "stop")) {
+        mutex_trylock(&lsm_lock);
+    }
     else {
-        _isl29020_usage(argv[0]);
+        _lsm303dlhc_usage(argv[0]);
         return -1;
     }
-
     return 0;
 }
 
