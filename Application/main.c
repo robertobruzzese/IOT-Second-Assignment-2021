@@ -33,9 +33,8 @@
 #include “l3g4200d.h”
 #include “l3g4200d_params.h”
 
-/* Declare the lps331ap device variable here */
-/*static lps331ap_t lps331ap;*/
-
+/* Declare the lpsxxx device variable here */
+ 
 static lpsxxx_t lpsxxx;
 
 /* Declare the lsm303dlhc device variable here */
@@ -52,11 +51,21 @@ static l3g4200d_t l3g4200d;
 
 
 /* Declare and initialize the lsm303dlhc thread lock here */
-mutex mu;
+static mutex_t lsm_lock = MUTEX_INIT_LOCKED;
+
+/* Declare and initialize the lpsxxx thread lock here */
+static mutex_t lps_lock = MUTEX_INIT_LOCKED;
+
+/* Declare and initialize the isl29020 thread lock here */
+static mutex_t isl_lock = MUTEX_INIT_LOCKED;
+
+/* Declare and initialize the l3g4200d thread lock here */
+static mutex_t l3g_lock = MUTEX_INIT_LOCKED;
+
 
 static char stack[THREAD_STACKSIZE_MAIN];
 
-/* stack memory allocated for the lsm303dlhc, l3g4200d, isl29020,  lpsxxx thread */
+/* stack memory allocated for the lsm303dlhc, l3g4200d, isl29020, lpsxxx thread */
 
 static char lsm303dlhc_stack[THREAD_STACKSIZE_MAIN];
 static char l3g4200d_stack[THREAD_STACKSIZE_MAIN];
@@ -68,22 +77,22 @@ static void *lsm303dlhc_thread(void *arg)
 {
     (void)arg;
     
-/* Add the lsm303dlhc sensor polling endless loop here */
+/* Add the lsm303dlhc accelerometer/magnetoeter sensor polling endless loop here */
     
     while (1) {
         
         /* Acquire the mutex here */
+      
+        mutex_lock(&lsm_lock);
     
-        mu.lock();
-
+ 
         /* Read the accelerometer/magnetometer values here */
       
         lsm303dlhc_3d_data_t mag_value;
         lsm303dlhc_3d_data_t acc_value;
         lsm303dlhc_read_acc(&lsm303dlhc, &acc_value);
         lsm303dlhc_read_mag(&lsm303dlhc, &mag_value);
-    
-        /*int acc = lsm303dlhc_read_acc*/ 
+
         
         printf("Accelerometer x: %i y: %i z: %i\n",
            acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);
@@ -92,12 +101,10 @@ static void *lsm303dlhc_thread(void *arg)
       
         xtimer_usleep(500 * US_PER_MS);
   
-        /*  int pres = lpsxxx_read_pres(&dev1);
-    int temp = lpsxxx_read_temp(&dev1);
-
-*/        /* Release the mutex here */
-
-        mu.unlock();
+        /* Release the mutex here */
+        
+        mutex_unlock(&lsm_lock);
+  
       
         xtimer_usleep(500 * US_PER_MS);
     }
@@ -109,38 +116,28 @@ static void *l3g4200d_thread(void *arg)
 {
     (void)arg;
     
-/* Add the lsm303dlhc sensor polling endless loop here */
+/* Add the l3g4200d gyroscope sensor polling endless loop here */
     
     while (1) {
         
         /* Acquire the mutex here */
     
-        mu.lock();
+        mutex_lock(&l3g_lock);
 
-        /* Read the accelerometer/magnetometer values here */
+        /* Read the gyroscope  values here */
       
-        lsm303dlhc_3d_data_t mag_value;
-        lsm303dlhc_3d_data_t acc_value;
-        lsm303dlhc_read_acc(&lsm303dlhc, &acc_value);
-        lsm303dlhc_read_mag(&lsm303dlhc, &mag_value);
+       l3g4200d_t l3g4200d;
+       l3g4200d_data_t acc_data;
+       l3g4200d_read(&l3g4200d, &acc_data);
+       printf("Gyroscope data [dps] - X: %6i   Y: %6i   Z: %6i\n",
+           acc_data.acc_x, acc_data.acc_y, acc_data.acc_z);
+       xtimer_usleep(500 * US_PER_MS);
+
+        /* Release the mutex here */
     
-        /*int acc = lsm303dlhc_read_acc*/ 
-        
-        printf("Accelerometer x: %i y: %i z: %i\n",
-           acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);
-        printf("Magnetometer x: %i y: %i z: %i\n",
-           mag_value.x_axis, mag_value.y_axis, mag_value.z_axis);
+       mutex_unlock(&l3g_lock);
       
-        xtimer_usleep(500 * US_PER_MS);
-  
-        /*  int pres = lpsxxx_read_pres(&dev1);
-    int temp = lpsxxx_read_temp(&dev1);
-
-*/        /* Release the mutex here */
-
-        mu.unlock();
-      
-        xtimer_usleep(500 * US_PER_MS);
+       xtimer_usleep(500 * US_PER_MS);
     }
 
     return 0;
@@ -150,38 +147,26 @@ static void *isl29020_thread(void *arg)
 {
     (void)arg;
     
-/* Add the lsm303dlhc sensor polling endless loop here */
+/* Add the isl29020 light sensor polling endless loop here */
     
     while (1) {
         
         /* Acquire the mutex here */
     
-        mu.lock();
+        mutex_lock(&isl_lock);
 
-        /* Read the accelerometer/magnetometer values here */
+        /* Read the light sensor  values here */
       
-        lsm303dlhc_3d_data_t mag_value;
-        lsm303dlhc_3d_data_t acc_value;
-        lsm303dlhc_read_acc(&lsm303dlhc, &acc_value);
-        lsm303dlhc_read_mag(&lsm303dlhc, &mag_value);
-    
-        /*int acc = lsm303dlhc_read_acc*/ 
-        
-        printf("Accelerometer x: %i y: %i z: %i\n",
-           acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);
-        printf("Magnetometer x: %i y: %i z: %i\n",
-           mag_value.x_axis, mag_value.y_axis, mag_value.z_axis);
-      
-        xtimer_usleep(500 * US_PER_MS);
-  
-        /*  int pres = lpsxxx_read_pres(&dev1);
-    int temp = lpsxxx_read_temp(&dev1);
+       isl29020_t lumin;
+       printf("Intensity of luminescence: %5i LUX\n", isl29020_read(&lumin));
+       xtimer_usleep(500 * US_PER_MS);
+       
+       /* Release the mutex here */
 
-*/        /* Release the mutex here */
+       mutex_unlock(&isl_lock);
 
-        mu.unlock();
-      
-        xtimer_usleep(500 * US_PER_MS);
+
+       xtimer_usleep(500 * US_PER_MS);
     }
 
     return 0;
@@ -190,36 +175,29 @@ static void *lpsxxx_thread(void *arg)
 {
     (void)arg;
     
-/* Add the lsm303dlhc sensor polling endless loop here */
+/* Add the lpsxxx atmospheric pressure and temperature sensor polling endless loop here */
     
     while (1) {
         
         /* Acquire the mutex here */
     
-        mu.lock();
+        mutex_lock(&lps_lock);
 
-        /* Read the accelerometer/magnetometer values here */
-      
-        lsm303dlhc_3d_data_t mag_value;
-        lsm303dlhc_3d_data_t acc_value;
-        lsm303dlhc_read_acc(&lsm303dlhc, &acc_value);
-        lsm303dlhc_read_mag(&lsm303dlhc, &mag_value);
-    
-        /*int acc = lsm303dlhc_read_acc*/ 
-        
-        printf("Accelerometer x: %i y: %i z: %i\n",
-           acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);
-        printf("Magnetometer x: %i y: %i z: %i\n",
-           mag_value.x_axis, mag_value.y_axis, mag_value.z_axis);
-      
+        /* Read the atmospheric pressure and temperature  values here */
+ 
+        uint16_t pres = 0;
+        int16_t temp = 0;
+        lpsxxx_read_temp(&lpsxxx, &temp);
+        lpsxxx_read_pres(&lpsxxx, &pres);
+        printf("Pressure: %uhPa, Temperature: %u.%u°C\n",
+           pres, (temp / 100), (temp % 100));
+        xtimer_sleep(2);
         xtimer_usleep(500 * US_PER_MS);
   
-        /*  int pres = lpsxxx_read_pres(&dev1);
-    int temp = lpsxxx_read_temp(&dev1);
 
-*/        /* Release the mutex here */
+        /* Release the mutex here */
 
-        mu.unlock();
+        mutex_unlock(&lps_lock);
       
         xtimer_usleep(500 * US_PER_MS);
     }
@@ -239,7 +217,7 @@ static int lsm303dlhc_handler(int argc, char *argv[])
         return -1;
     }
 
-    /* Implement the lsm303dlhc start/stop subcommands here */
+    /* Implement the lsm303dlhc start/stop temperature|magnetometer|accelerometer subcommands here */
     
      if (!strcmp(argv[1], "temperature")) {
         int16_t temp = 0;
@@ -276,7 +254,7 @@ static int lpsxxx_handler(int argc, char *argv[])
         return -1;
     }
 
-    /* Implement the lps331ap temperature/pressure subcommands here */
+    /* Implement the lpsxxx temperature/pressure subcommands here */
 
     if (!strcmp(argv[1], "temperature")) {
         int16_t temp = 0;
@@ -308,22 +286,11 @@ static int isl29020_handler(int argc, char *argv[])
     }
 
     /* Implement the isl29020 start/stop subcommands here */
-    
-     if (!strcmp(argv[1], "temperature")) {
-        int16_t temp = 0;
-        isl29020_read_temp(&isl29020, &temp);
-        printf("Temperature: %i.%u°C\n", (temp / 100), (temp % 100));
-    }
-    else if (!strcmp(argv[1], "magnetometer")) {
-        uint16_t mag = 0;
-        isl29020_read_mag(&isl29020, &mag);
-        printf("Magnetometer: %uhPa\n", mag);
-    }
-    else if (!strcmp(argv[1], "accelerometer")) {
-        uint16_t acc = 0;
-        isl29020_read_acc(&isl29020, &acc);
-        printf("Accelerometer: %uhPa\n", acc);
-    }
+     if (!strcmp(argv[1], "luminosity")) {
+        isl29020_t lumin;
+        printf("Intensity of luminescence: %5i LUX\n", isl29020_read(&lumin));
+   }  
+     
     else {
         _isl29020_usage(argv[0]);
         return -1;
@@ -344,22 +311,15 @@ static int l3g4200d_handler(int argc, char *argv[])
         return -1;
     }
 
-    /* Implement the l3g4200d start/stop subcommands here */
+    /* Implement the gyroscope l3g4200d start/stop subcommands here */
     
-     if (!strcmp(argv[1], "temperature")) {
-        int16_t temp = 0;
-        l3g4200d_read_temp(&l3g4200d, &temp);
-        printf("Temperature: %i.%u°C\n", (temp / 100), (temp % 100));
-    }
-    else if (!strcmp(argv[1], "magnetometer")) {
-        uint16_t mag = 0;
-        l3g4200d_read_mag(&l3g4200d, &mag);
-        printf("Magnetometer: %uhPa\n", mag);
-    }
-    else if (!strcmp(argv[1], "accelerometer")) {
-        uint16_t acc = 0;
-        l3g4200d_read_acc(&l3g4200d, &acc);
-        printf("Accelerometer: %uhPa\n", acc);
+     if (!strcmp(argv[1], "gyroscope")) {
+       l3g4200d_t l3g4200d;
+       l3g4200d_data_t acc_data;
+       l3g4200d_read(&l3g4200d, &acc_data);
+       printf("Gyroscope data [dps] - X: %6i   Y: %6i   Z: %6i\n",
+           acc_data.acc_x, acc_data.acc_y, acc_data.acc_z);
+
     }
     else {
         _l3g4200d_usage(argv[0]);
@@ -371,16 +331,16 @@ static int l3g4200d_handler(int argc, char *argv[])
 
 static const shell_command_t commands[] = {
     /* lsm303dlhc shell command handler */
-    { "lsm", "  reading accelerometer values", lsm303dlhc_handler },
+    { "lsm", "  reading lsm303dlhc accelerometer values", lsm303dlhc_handler },
 
     /* lpsxxx shell command handler */
-   { "lps", "reading the  pressure and temperature  values", lpsxxx_handler },
+    { "lps", "reading the lpsxxx  pressure and temperature  values", lpsxxx_handler },
     
     /* isl29020 shell command handler */
-    { "isl", "reading light sensor values", isl29020_handler },
+    { "isl", "reading isl29020 light sensor values", isl29020_handler },
 
     /* l3g4200d shell command handler */
-   { "l3g", "read the l3g4200d values", l3g4200d_handler },
+    { "l3g", "read the gyroscope l3g4200d values", l3g4200d_handler },
     
     { NULL, NULL, NULL}
 };
@@ -388,7 +348,7 @@ static const shell_command_t commands[] = {
 int main(void)
 {
     /* Initialize the lps331ap sensor here */
-    puts("Initializing LPS331AP sensor");
+    puts("Initializing LPSxxx sensor");
     lpsxxx_init(&lpsxxx, &lpsxxx_params[0]);
     if (lpsxxx_init(&lpsxxx, &lpsxxx_params[0]) == 0) {
         puts("[OK]\n");
@@ -430,7 +390,11 @@ int main(void)
         puts("[Failed]");
     return 1;
     }
+
+       /*This four threads provide with continuous readings. while the shell, which is a separate thread (the main)
+    provide with start/stop readings*/
     
+ 
    /* Perform sensor readings lsm303dlhc on a separate thread in order to host a shell on the main thread*/  
     thread_create(lsm303dlhc_stack, sizeof(lsm303dlhc_stack), THREAD_PRIORITY_MAIN - 1,
                   0, lsm303dlhc_thread, NULL, "lsm303dlhc");
