@@ -219,20 +219,11 @@ static int lsm303dlhc_handler(int argc, char *argv[])
 
     /* Implement the lsm303dlhc start/stop temperature|magnetometer|accelerometer subcommands here */
     
-     if (!strcmp(argv[1], "temperature")) {
-        int16_t temp = 0;
-        lsm303dlhc_read_temp(&lsm303dlhc, &temp);
-        printf("Temperature: %i.%u°C\n", (temp / 100), (temp % 100));
+     if (!strcmp(argv[1], "start")) {
+        mutex_unlock(&lsm_lock);
     }
-    else if (!strcmp(argv[1], "magnetometer")) {
-        uint16_t mag = 0;
-        lsm303dlhc_read_mag(&lsm303dlhc, &mag);
-        printf("Magnetometer: %uhPa\n", mag);
-    }
-    else if (!strcmp(argv[1], "accelerometer")) {
-        uint16_t acc = 0;
-        lsm303dlhc_read_acc(&lsm303dlhc, &acc);
-        printf("Accelerometer: %uhPa\n", acc);
+    else if (!strcmp(argv[1], "stop")) {
+        mutex_trylock(&lsm_lock);
     }
     else {
         _lsm303dlhc_usage(argv[0]);
