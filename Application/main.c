@@ -351,7 +351,7 @@ int main(void)
    
     /* Initialize the lsm303dlhc sensor here */
     puts("Initializing LSM303DLHC sensor");
-    lsm303dlhc_init(&lsm303dlhc, &lsm303dlhc_params[0])
+    lsm303dlhc_init(&lsm303dlhc, &lsm303dlhc_params[0]);
     if (lsm303dlhc_init(&lsm303dlhc, &lsm303dlhc_params[0]) == 0) {
         puts("[OK]\n");
     }
