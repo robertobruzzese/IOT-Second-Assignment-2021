@@ -7,8 +7,11 @@ USEMODULE += shell_commands
 USEMODULE += xtimer
 
 # Add the required modules here
-USEMODULE += lps331ap
+USEMODULE += lpsxxx
 USEMODULE += lsm303dlhc
+USEMODULE += isl29020
+USEMODULE += l3g4200d
+
 RIOTBASE ?= $(CURDIR)/../../RIOT
 
 include $(RIOTBASE)/Makefile.include
