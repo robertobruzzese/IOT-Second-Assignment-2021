@@ -24,14 +24,14 @@
 /* Add isl29020 related include here*/
 /*ISL29020 light sensor*/
 
-#include “isl29020.h”
-#include “isl29020_params.h”
+#include "isl29020.h"
+#include "isl29020_params.h"
 
 /* Add l3g44200 related include here*/
 /*l3g44200 gyroscope  sensor*/
 
-#include “l3g4200d.h”
-#include “l3g4200d_params.h”
+#include "l3g4200d.h"
+#include "l3g4200d_params.h"
 
 /* Declare the lpsxxx device variable here */
  
