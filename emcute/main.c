@@ -160,6 +160,13 @@ static void *lsm303dlhc_thread(void *arg)
         xtimer_usleep(500 * US_PER_MS);
 
         xtimer_ticks32_t last = xtimer_now(); 
+
+        /*json structure*/
+        char json[128];  
+
+        /*structure of time*/
+        char datetime[20];
+        time_t current
    
      
         // takes the current date and time
@@ -228,7 +235,14 @@ static void *l3g4200d_thread(void *arg)
            acc_data.acc_x, acc_data.acc_y, acc_data.acc_z);
        xtimer_usleep(500 * US_PER_MS);
 
-       xtimer_ticks32_t last = xtimer_now(); 
+       xtimer_ticks32_t last = xtimer_now();
+
+       /*json structure*/
+       char json[128];  
+
+       /*structure of time*/
+       char datetime[20];
+       time_t current
    
      
         // takes the current date and time
@@ -292,6 +306,14 @@ static void *isl29020_thread(void *arg)
        isl29020_t lumin;
        printf("Intensity of luminescence: %5i LUX\n", isl29020_read(&lumin));
        xtimer_usleep(500 * US_PER_MS);
+
+
+        /*json structure*/
+        char json[128];  
+
+        /*structure of time*/
+        char datetime[20];
+        time_t current
 
        // takes the current date and time
     
@@ -365,6 +387,13 @@ static void *lpsxxx_thread(void *arg)
   
         xtimer_ticks32_t last = xtimer_now(); 
    
+
+        /*json structure*/
+        char json[128];  
+
+        /*structure of time*/
+        char datetime[20];
+        time_t current
      
         // takes the current date and time
     
@@ -614,12 +643,7 @@ static int cmd_pub(int argc, char **argv)
         return 1;
     }
 
-    /*json structure*/
-    char json[128];  
-
-    /*structure of time*/
-    char datetime[20];
-    time_t current;
+    ;
     /*ACTUATOR STATUS ON/OF*/
     char pump[2] = "OF"; 
     /*SENSOR VARIABLES*/
