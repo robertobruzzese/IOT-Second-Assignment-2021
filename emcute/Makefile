@@ -43,24 +43,17 @@ USEMODULE += netstats_ipv6
 USEMODULE += netstats_rpl
 MQTT_TOPIC = localgateway_to_awsiot
 MQTT_TOPIC_IN = awsiot_to_localgateway
-CFLAGS += -DSERVER_ADDR='"$(SERVER_ADDR)"'
-CFLAGS += -DSERVER_PORT=$(SERVER_PORT)
-CFLAGS += -DMQTT_TOPIC='"$(MQTT_TOPIC)"'
-CFLAGS += -DMQTT_TOPIC_IN='"$(MQTT_TOPIC_IN)"'
+ 
 
 ifneq (,$(EMCUTE_ID))
   CFLAGS += -DEMCUTE_ID=\"$(EMCUTE_ID)\"
 endif
 
-# Set a custom channel if needed
-include $(RIOTMAKE)/default-radio-settings.inc.mk
-
-#FEATURES_OPTIONAL += periph_rtc
-#FEATURES_OPTIONAL += periph_adc
 
 # if NUCLEO = 1 => an stm32 nucleo board is being used, else => an M3 node is being used
 NUCLEO = 0
 CFLAGS += -DNUCLEO=$(NUCLEO)
+RIOTBASE ?= $(CURDIR)/../../RIOT
 
-#include $(CURDIR)/Makefile.net.conf
 include $(RIOTBASE)/Makefile.include
+ 
