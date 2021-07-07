@@ -97,6 +97,8 @@ static char l3g4200d_stack[THREAD_STACKSIZE_MAIN];
 static char isl29020_stack[THREAD_STACKSIZE_MAIN];
 static char lpsxxx_stack[THREAD_STACKSIZE_MAIN];
 
+static char stack[THREAD_STACKSIZE_DEFAULT];
+
 static emcute_topic_t  topic;
 static unsigned  flags = EMCUTE_QOS_0;
 
@@ -309,7 +311,7 @@ static void *isl29020_thread(void *arg)
        isl29020_t lumin;
        printf("Intensity of luminescence: %5i LUX\n", isl29020_read(&lumin));
        xtimer_usleep(500 * US_PER_MS);
-
+       xtimer_ticks32_t last = xtimer_now();
 
         /*json structure*/
         char json[128];  
@@ -334,8 +336,8 @@ static void *isl29020_thread(void *arg)
    
     /* step 1:  fills the json document */
 
-    sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"LUMINESCENCE\": %i}",
-                  atoi(value), datetime, lumin);                  
+    sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"LUMINESCENCE\": %5i}",
+                  atoi(value), datetime, isl29020_read(&lumin));                  
       //argv[2] = json;  
          
  
@@ -343,13 +345,13 @@ static void *isl29020_thread(void *arg)
       if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
         printf("error: unable to publish data to topic '%s [%i]'\n",
                 topic.name, (int)topic.id);
-        return 1;
+        return 0;
       }
 
       printf("Published %i bytes to topic '%s  [%i]'\n",
             (int)strlen(json), topic.name, topic.id);
 
-      xtimer_periodic_wakeup(&last, DELAY);
+       xtimer_periodic_wakeup(&last, DELAY);
 
        
        /* Release the mutex here */
@@ -396,7 +398,7 @@ static void *lpsxxx_thread(void *arg)
 
         /*structure of time*/
         char datetime[20];
-        time_t current
+        time_t current;
      
         // takes the current date and time
     
@@ -423,7 +425,7 @@ static void *lpsxxx_thread(void *arg)
       if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
         printf("error: unable to publish data to topic '%s [%i]'\n",
                 topic.name, (int)topic.id);
-        return 1;
+        return 0;
       }
 
       printf("Published %i bytes to topic '%s  [%i]'\n",
@@ -648,7 +650,7 @@ static int cmd_pub(int argc, char **argv)
 
     ;
     /*ACTUATOR STATUS ON/OF*/
-    char pump[2] = "OF"; 
+   // char pump[2] = "OF"; 
     /*SENSOR VARIABLES*/
        
   
@@ -672,7 +674,7 @@ static int cmd_pub(int argc, char **argv)
  
 // it sleeps for five seconds
       xtimer_sleep(5);            
-   }
+
     return 0;
 }
 
@@ -852,7 +854,7 @@ int main(void)
     memset(subscriptions, 0, (NUMOFSUBS * sizeof(emcute_sub_t)));
 
     /* start the emcute thread */
-    thread_create(emcute_stack_, sizeof(stack), EMCUTE_PRIO, 0,
+    thread_create(emcute_stack, sizeof(stack), EMCUTE_PRIO, 0,
                   emcute_thread, NULL, "emcute");
 
 
