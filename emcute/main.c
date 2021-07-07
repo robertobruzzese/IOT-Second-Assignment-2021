@@ -9,6 +9,7 @@
 #include "net/emcute.h" 
 #include "msg.h"
 #include "mutex.h"
+#include <time.h>
 
 /* Add lps331ap related include here */
 /*Atmospheric pressure and temperature – LPS331AP*/
@@ -96,7 +97,8 @@ static char l3g4200d_stack[THREAD_STACKSIZE_MAIN];
 static char isl29020_stack[THREAD_STACKSIZE_MAIN];
 static char lpsxxx_stack[THREAD_STACKSIZE_MAIN];
 
-
+static emcute_topic_t  topic;
+static unsigned  flags = EMCUTE_QOS_0;
 
 static void *emcute_thread(void *arg)
 {
@@ -166,12 +168,12 @@ static void *lsm303dlhc_thread(void *arg)
 
         /*structure of time*/
         char datetime[20];
-        time_t current
+        time_t current;
    
      
         // takes the current date and time
-    
         time(&current);
+ 
         struct tm* tt = localtime(&current);
         int c = strftime(datetime, sizeof(datetime), "%Y-%m-%d %T", tt);
         if(c == 0) {
@@ -181,24 +183,25 @@ static void *lsm303dlhc_thread(void *arg)
     
         // takes the sample sensor data
 
-        argv[3] = "1"; 
+        char value[1] = "1";
+        
    
         /* step 1:  fills the json document */
 
         sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"X\": %6i, \"Y\": %6i,\"Z\": %6i}",
-                  atoi(argv[3]), datetime, acc_data.acc_x, acc_data.acc_y, acc_data.acc_z);                  
-         argv[2] = json;  
+                  atoi(value), datetime, acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);                  
+        // argv[2] = json;  
          
  
     /* step 2: publish data */
-      if (emcute_pub(&topic, argv[2], strlen(argv[2]), flags) != EMCUTE_OK) {
+      if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
         printf("error: unable to publish data to topic '%s [%i]'\n",
                 topic.name, (int)topic.id);
-        return 1;
+        return 0;
       }
 
       printf("Published %i bytes to topic '%s  [%i]'\n",
-            (int)strlen(argv[2]), topic.name, topic.id);
+            (int)strlen(json), topic.name, topic.id);
 
       xtimer_periodic_wakeup(&last, DELAY);
 
@@ -242,7 +245,7 @@ static void *l3g4200d_thread(void *arg)
 
        /*structure of time*/
        char datetime[20];
-       time_t current
+       time_t current;
    
      
         // takes the current date and time
@@ -257,24 +260,24 @@ static void *l3g4200d_thread(void *arg)
     
         // takes the sample sensor data
 
-        argv[3] = "1"; 
+         char value[1] = "1";
    
         /* step 1:  fills the json document */
 
         sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"X\": %6i, \"Y\": %6i,\"Z\": %6i}",
-                  atoi(argv[3]), datetime, acc_data.acc_x, acc_data.acc_y, acc_data.acc_z);                  
-      argv[2] = json;  
+                  atoi(value), datetime, acc_data.acc_x, acc_data.acc_y, acc_data.acc_z);                  
+      //argv[2] = json;  
          
  
     /* step 2: publish data */
-      if (emcute_pub(&topic, argv[2], strlen(argv[2]), flags) != EMCUTE_OK) {
+      if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
         printf("error: unable to publish data to topic '%s [%i]'\n",
                 topic.name, (int)topic.id);
-        return 1;
+        return 0;
       }
 
       printf("Published %i bytes to topic '%s  [%i]'\n",
-            (int)strlen(argv[2]), topic.name, topic.id);
+            (int)strlen(json), topic.name, topic.id);
 
       xtimer_periodic_wakeup(&last, DELAY);
 
@@ -313,7 +316,7 @@ static void *isl29020_thread(void *arg)
 
         /*structure of time*/
         char datetime[20];
-        time_t current
+        time_t current;
 
        // takes the current date and time
     
@@ -327,24 +330,24 @@ static void *isl29020_thread(void *arg)
 
     // takes the sample sensor data
 
-       argv[3] = "1"; 
+      char value[1] = "1";
    
     /* step 1:  fills the json document */
 
     sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"LUMINESCENCE\": %i}",
-                  atoi(argv[3]), datetime, lumin);                  
-      argv[2] = json;  
+                  atoi(value), datetime, lumin);                  
+      //argv[2] = json;  
          
  
     /* step 2: publish data */
-      if (emcute_pub(&topic, argv[2], strlen(argv[2]), flags) != EMCUTE_OK) {
+      if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
         printf("error: unable to publish data to topic '%s [%i]'\n",
                 topic.name, (int)topic.id);
         return 1;
       }
 
       printf("Published %i bytes to topic '%s  [%i]'\n",
-            (int)strlen(argv[2]), topic.name, topic.id);
+            (int)strlen(json), topic.name, topic.id);
 
       xtimer_periodic_wakeup(&last, DELAY);
 
@@ -407,24 +410,24 @@ static void *lpsxxx_thread(void *arg)
     
     // takes the sample sensor data
 
-       argv[3] = "1"; 
+     char value[1] = "1"; 
    
     /* step 1:  fills the json document */
 
     sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"PRESSURE\": %i, \"TEMPERATURE\": %i}",
-                  atoi(argv[3]), datetime, pres, temp);                  
-      argv[2] = json;  
+                  atoi(value), datetime, pres, temp);                  
+     // argv[2] = json;  
          
  
     /* step 2: publish data */
-      if (emcute_pub(&topic, argv[2], strlen(argv[2]), flags) != EMCUTE_OK) {
+      if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
         printf("error: unable to publish data to topic '%s [%i]'\n",
                 topic.name, (int)topic.id);
         return 1;
       }
 
       printf("Published %i bytes to topic '%s  [%i]'\n",
-            (int)strlen(argv[2]), topic.name, topic.id);
+            (int)strlen(json), topic.name, topic.id);
 
       xtimer_periodic_wakeup(&last, DELAY);
   
