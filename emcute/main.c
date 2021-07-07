@@ -784,7 +784,7 @@ static const shell_command_t commands[] = {
     { "will", "register a last will", cmd_will },
  
     /* lsm303dlhc shell command handler */
-    { "lsm", "  reading lsm303dlhc accelerometer values", lsm303dlhc_handler },
+    { "lsm", "reading lsm303dlhc accelerometer values", lsm303dlhc_handler },
 
     /* lpsxxx shell command handler */
     { "lps", "reading the lpsxxx  pressure and temperature  values", lpsxxx_handler },
