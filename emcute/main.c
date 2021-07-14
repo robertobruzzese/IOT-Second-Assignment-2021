@@ -35,7 +35,6 @@
 #include "l3g4200d.h"
 #include "l3g4200d_params.h"
 
-
 #ifndef EMCUTE_ID
 #define EMCUTE_ID           ("gertrud")
 #endif
@@ -56,7 +55,7 @@ static char topics[NUMOFSUBS][TOPIC_MAXLEN];
 
 
 /* [Emcute - MQTT] Stack and  vars */
-static char emcute_stack[THREAD_STACKSIZE_DEFAULT];
+static char emcute_stack[THREAD_STACKSIZE_MAIN];
 
 /* Declare the lpsxxx device variable here */
  
@@ -97,8 +96,6 @@ static char l3g4200d_stack[THREAD_STACKSIZE_MAIN];
 static char isl29020_stack[THREAD_STACKSIZE_MAIN];
 static char lpsxxx_stack[THREAD_STACKSIZE_MAIN];
 
-static char stack[THREAD_STACKSIZE_DEFAULT];
-
 static emcute_topic_t  topic;
 static unsigned  flags = EMCUTE_QOS_0;
 
@@ -109,6 +106,77 @@ static void *emcute_thread(void *arg)
     return NULL;    /* should never be reached */
 }
 
+
+static void on_pub(const emcute_topic_t *topic, void *data, size_t len) {
+    char *in = (char *)data;
+
+    printf("### got publication for topic '%s' [%i] ###\n",
+           topic->name, (int)topic->id);
+    for (size_t i = 0; i < len; i++) {
+        printf("%c", in[i]);
+
+       
+    }
+
+}
+
+int start_emcute(void) {
+    /* initialize our subscription buffers */
+    memset(subscriptions, 0, (NUMOFSUBS * sizeof(emcute_sub_t)));
+
+    xtimer_sleep(10);
+    int dev_id;
+    dev_id = EMCUTE_ID[strlen(EMCUTE_ID)-1] - '0';
+    printf("Dev id: %d\n", dev_id);
+
+
+    /* start the emcute thread */
+    thread_create(emcute_stack, sizeof(emcute_stack), EMCUTE_PRIO, 0, emcute_thread, NULL, "emcute");
+
+    // connect to MQTT-SN broker
+    printf("Connecting to MQTT-SN broker %s port %d.\n", SERVER_ADDR, SERVER_PORT);
+
+    sock_udp_ep_t gw = {
+        .family = AF_INET6,
+        .port = SERVER_PORT};
+
+    char *message = "connected";
+    size_t len = strlen(message);
+
+    /* parse address */
+    if (ipv6_addr_from_str((ipv6_addr_t *)&gw.addr.ipv6, SERVER_ADDR) == NULL) {
+        printf("error parsing IPv6 address\n");
+        return 1;
+    }
+
+    if (emcute_con(&gw, true, MQTT_TOPIC, message, len, 0) != EMCUTE_OK) {
+        printf("error: unable to connect to [%s]:%i\n", SERVER_ADDR, (int)gw.port);
+        return 1;
+    }
+
+    printf("Successfully connected to gateway at [%s]:%i\n", SERVER_ADDR, (int)gw.port);
+
+    // setup subscription to topic
+
+    unsigned flags = EMCUTE_QOS_0;
+    subscriptions[0].cb = on_pub;
+    strcpy(topics[0], MQTT_TOPIC_IN);
+    subscriptions[0].topic.name = MQTT_TOPIC_IN;
+
+    if (emcute_sub(&subscriptions[0], flags) != EMCUTE_OK) {
+        printf("error: unable to subscribe to %s\n", MQTT_TOPIC_IN);
+        return 1;
+    }
+
+    printf("Now subscribed to %s\n", MQTT_TOPIC_IN);
+
+    return 0;
+}
+
+
+
+
+    /*
 static void on_pub(const emcute_topic_t *topic, void *data, size_t len)
 {
     char *in = (char *)data;
@@ -120,7 +188,7 @@ static void on_pub(const emcute_topic_t *topic, void *data, size_t len)
     }
     puts("");
 }
-
+*/
 
 
  static unsigned get_qos(const char *str)
@@ -846,20 +914,20 @@ int main(void)
     return 1;
     }
 
+    start_emcute();
 
     /* the main thread needs a msg queue to be able to run `ping6`*/
     msg_init_queue(queue, ARRAY_SIZE(queue));
 
     /* initialize our subscription buffers */
-    memset(subscriptions, 0, (NUMOFSUBS * sizeof(emcute_sub_t)));
+    //memset(subscriptions, 0, (NUMOFSUBS * sizeof(emcute_sub_t)));
 
     /* start the emcute thread */
-    thread_create(emcute_stack, sizeof(stack), EMCUTE_PRIO, 0,
-                  emcute_thread, NULL, "emcute");
+    /*thread_create(emcute_stack, sizeof(emcute_stack), EMCUTE_PRIO, 0,
+                  emcute_thread, NULL, "emcute"); */
 
 
      
-
     /* Everything is ready, let's start the shell now */
     char line_buf[SHELL_DEFAULT_BUFSIZE];
     shell_run(commands, line_buf, SHELL_DEFAULT_BUFSIZE);
