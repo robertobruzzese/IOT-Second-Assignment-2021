@@ -76,7 +76,10 @@ static l3g4200d_t l3g4200d;
 
 /* Declare and initialize the sensors thread lock here */
 static mutex_t sensor_lock = MUTEX_INIT_LOCKED;
-
+//static mutex_t lpsxxx_lock = MUTEX_INIT_LOCKED;
+static mutex_t lsm_lock = MUTEX_INIT_LOCKED;
+//static mutex_t l3g_lock = MUTEX_INIT_LOCKED;
+//static mutex_t isl_lock = MUTEX_INIT_LOCKED;
 
 //static char stack[THREAD_STACKSIZE_MAIN];
 
@@ -232,12 +235,11 @@ static void *sensor_thread(void *arg)
         /*structure of time*/
         char datetime[20];
         time_t current;
-   
+        struct tm* tt ;
      
         // takes the current date and time
         time(&current);
- 
-        struct tm* tt = localtime(&current);
+        tt = localtime(&current);
         int c = strftime(datetime, sizeof(datetime), "%Y-%m-%d %T", tt);
         if(c == 0) {
           printf("Error! Invalid format\n");
@@ -279,13 +281,13 @@ static void *sensor_thread(void *arg)
         
         xtimer_usleep(500 * US_PER_MS);
 
-        xtimer_ticks32_t last = xtimer_now();
+        last = xtimer_now();
 
    
      
         // takes the current date and time
-    
-        tt = time(&current);
+        time(&current);
+        tt = localtime(&current);
         c = strftime(datetime, sizeof(datetime), "%Y-%m-%d %T", tt);
         if(c == 0) {
           printf("Error! Invalid format\n");
@@ -320,26 +322,11 @@ static void *sensor_thread(void *arg)
         printf("Intensity of luminescence: %5i LUX\n", isl29020_read(&lumin));
         
         xtimer_usleep(500 * US_PER_MS);
-        xtimer_ticks32_t last = xtimer_now();
+        last = xtimer_now();
 
-        /* Read the atmospheric pressure and temperature  values here */
- 
-        uint16_t pres = 0;
-        int16_t temp = 0;
-        lpsxxx_read_pres(&lpsxxx, &pres);
-        lpsxxx_read_temp(&lpsxxx, &temp);
-       
-        printf("Pressure: %uhPa, Temperature: %u.%u°C\n",
-           pres, (temp / 100), (temp % 100));
-        
-        xtimer_sleep(2);
-        xtimer_usleep(500 * US_PER_MS);
-        xtimer_ticks32_t last = xtimer_now(); 
-   
      
         // takes the current date and time
         time(&current);
- 
         tt = localtime(&current);
         c = strftime(datetime, sizeof(datetime), "%Y-%m-%d %T", tt);
         if(c == 0) {
@@ -348,11 +335,11 @@ static void *sensor_thread(void *arg)
         } 
         
    
-        /* step 1:  fills the json document */
+         /* step 1:  fills the json document */
 
-        sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"X\": %6i, \"Y\": %6i,\"Z\": %6i}",
-                  atoi(value), datetime, acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);                  
-        // argv[2] = json;  
+        sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"LUMINESCENCE\": %5i}",
+                  atoi(value), datetime, isl29020_read(&lumin));                  
+   
          
  
         /* step 2: publish data */
@@ -360,12 +347,13 @@ static void *sensor_thread(void *arg)
         printf("error: unable to publish data to topic '%s [%i]'\n",
                 topic.name, (int)topic.id);
         return 0;
-        }
+          }
 
         printf("Published %i bytes to topic '%s  [%i]'\n",
             (int)strlen(json), topic.name, topic.id);
 
         xtimer_periodic_wakeup(&last, DELAY);
+
 
 
 
@@ -381,13 +369,13 @@ static void *sensor_thread(void *arg)
         xtimer_sleep(2);
         xtimer_usleep(500 * US_PER_MS);
   
-        xtimer_ticks32_t last = xtimer_now(); 
+        last = xtimer_now(); 
 
      
         // takes the current date and time
-    
         time(&current);
         tt = localtime(&current);
+     
         c = strftime(datetime, sizeof(datetime), "%Y-%m-%d %T", tt);
         if(c == 0) {
           printf("Error! Invalid format\n");
@@ -423,7 +411,7 @@ static void *sensor_thread(void *arg)
   
         /* Release the mutex here */
         
-        mutex_unlock(&lsm_lock);
+        mutex_unlock(&sensor_lock);
   
       
         xtimer_usleep(500 * US_PER_MS);
@@ -639,18 +627,10 @@ static int cmd_pub(int argc, char **argv)
     provide with start/stop readings*/
     
  
-    /* Perform sensor readings lsm303dlhc on a separate thread in order to host a shell on the main thread*/  
-    thread_create(lsm303dlhc_stack, sizeof(lsm303dlhc_stack), THREAD_PRIORITY_MAIN - 1,
-                  0, lsm303dlhc_thread, NULL, "lsm303dlhc");
-    /* Perform sensor readings l3g4200d on a separate thread in order to host a shell on the main thread*/  
-    thread_create(l3g4200d_stack, sizeof(l3g4200d_stack), THREAD_PRIORITY_MAIN - 2,
-                  0, l3g4200d_thread, NULL, "l3g4200d");
-    /* Perform sensor readings isl29020 on a separate thread in order to host a shell on the main thread*/  
-    thread_create(isl29020_stack, sizeof(isl29020_stack), THREAD_PRIORITY_MAIN - 3,
-                  0, isl29020_thread, NULL, "isl29020");
-    /* Perform sensor readings lpsxxx on a separate thread in order to host a shell on the main thread*/  
-    thread_create(lpsxxx_stack, sizeof(lpsxxx_stack), THREAD_PRIORITY_MAIN - 4,
-                  0, lpsxxx_thread, NULL, "lpsxxx");
+    /* Perform sensor readings sensor on a separate thread in order to host a shell on the main thread*/  
+    thread_create(sensor_stack, sizeof(sensor_stack), THREAD_PRIORITY_MAIN - 1,
+                  0, sensor_thread, NULL, "sensor");
+  
 
  
 // it sleeps for five seconds
