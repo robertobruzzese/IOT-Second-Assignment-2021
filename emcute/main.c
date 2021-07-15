@@ -74,27 +74,18 @@ static isl29020_t isl29020;
 static l3g4200d_t l3g4200d;
 
 
-/* Declare and initialize the lsm303dlhc thread lock here */
-static mutex_t lsm_lock = MUTEX_INIT_LOCKED;
-
-/* Declare and initialize the lpsxxx thread lock here */
-static mutex_t lps_lock = MUTEX_INIT_LOCKED;
-
-/* Declare and initialize the isl29020 thread lock here */
-static mutex_t isl_lock = MUTEX_INIT_LOCKED;
-
-/* Declare and initialize the l3g4200d thread lock here */
-static mutex_t l3g_lock = MUTEX_INIT_LOCKED;
+/* Declare and initialize the sensors thread lock here */
+static mutex_t sensor_lock = MUTEX_INIT_LOCKED;
 
 
 //static char stack[THREAD_STACKSIZE_MAIN];
 
 /* stack memory allocated for the lsm303dlhc, l3g4200d, isl29020, lpsxxx thread */
 
-static char lsm303dlhc_stack[THREAD_STACKSIZE_MAIN];
-static char l3g4200d_stack[THREAD_STACKSIZE_MAIN];
-static char isl29020_stack[THREAD_STACKSIZE_MAIN];
-static char lpsxxx_stack[THREAD_STACKSIZE_MAIN];
+static char sensor_stack[THREAD_STACKSIZE_MAIN];
+//static char l3g4200d_stack[THREAD_STACKSIZE_MAIN];
+//static char isl29020_stack[THREAD_STACKSIZE_MAIN];
+//static char lpsxxx_stack[THREAD_STACKSIZE_MAIN];
 
 static emcute_topic_t  topic;
 static unsigned  flags = EMCUTE_QOS_0;
@@ -203,17 +194,17 @@ static void on_pub(const emcute_topic_t *topic, void *data, size_t len)
 
   
 
-static void *lsm303dlhc_thread(void *arg)
+static void *sensor_thread(void *arg)
 {
     (void)arg;
     
-/* Add the lsm303dlhc accelerometer/magnetoeter sensor polling endless loop here */
+/* Add the  sensor polling endless loop here */
     
     while (1) {
         
         /* Acquire the mutex here */
       
-        mutex_lock(&lsm_lock);
+        mutex_lock(&sensor_lock);
     
  
         /* Read the accelerometer/magnetometer values here */
@@ -232,6 +223,8 @@ static void *lsm303dlhc_thread(void *arg)
         xtimer_usleep(500 * US_PER_MS);
 
         xtimer_ticks32_t last = xtimer_now(); 
+
+
 
         /*json structure*/
         char json[128];  
@@ -260,191 +253,121 @@ static void *lsm303dlhc_thread(void *arg)
 
         sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"X\": %6i, \"Y\": %6i,\"Z\": %6i}",
                   atoi(value), datetime, acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);                  
-        // argv[2] = json;  
          
  
-    /* step 2: publish data */
-      if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
+        /* step 2: publish data */
+        if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
         printf("error: unable to publish data to topic '%s [%i]'\n",
                 topic.name, (int)topic.id);
         return 0;
-      }
+        }
 
-      printf("Published %i bytes to topic '%s  [%i]'\n",
+        printf("Published %i bytes to topic '%s  [%i]'\n",
             (int)strlen(json), topic.name, topic.id);
 
-      xtimer_periodic_wakeup(&last, DELAY);
+        xtimer_periodic_wakeup(&last, DELAY);
 
-  
-        /* Release the mutex here */
-        
-        mutex_unlock(&lsm_lock);
-  
-      
-        xtimer_usleep(500 * US_PER_MS);
-    }
 
-    return 0;
-}
-
-static void *l3g4200d_thread(void *arg)
-{
-    (void)arg;
-    
-/* Add the l3g4200d gyroscope sensor polling endless loop here */
-    
-    while (1) {
-        
-        /* Acquire the mutex here */
-    
-        mutex_lock(&l3g_lock);
 
         /* Read the gyroscope  values here */
-      
-       l3g4200d_t l3g4200d;
-       l3g4200d_data_t acc_data;
-       l3g4200d_read(&l3g4200d, &acc_data);
-       printf("Gyroscope data [dps] - X: %6i   Y: %6i   Z: %6i\n",
+
+        l3g4200d_t l3g4200d;
+        l3g4200d_data_t acc_data;
+        l3g4200d_read(&l3g4200d, &acc_data);
+        printf("Gyroscope data [dps] - X: %6i   Y: %6i   Z: %6i\n",
            acc_data.acc_x, acc_data.acc_y, acc_data.acc_z);
-       xtimer_usleep(500 * US_PER_MS);
+        
+        xtimer_usleep(500 * US_PER_MS);
 
-       xtimer_ticks32_t last = xtimer_now();
+        xtimer_ticks32_t last = xtimer_now();
 
-       /*json structure*/
-       char json[128];  
-
-       /*structure of time*/
-       char datetime[20];
-       time_t current;
    
      
         // takes the current date and time
     
-        time(&current);
-        struct tm* tt = localtime(&current);
-        int c = strftime(datetime, sizeof(datetime), "%Y-%m-%d %T", tt);
+        tt = time(&current);
+        c = strftime(datetime, sizeof(datetime), "%Y-%m-%d %T", tt);
         if(c == 0) {
           printf("Error! Invalid format\n");
           return 0;
         } 
-    
-        // takes the sample sensor data
+          
+   
+        /*  step 1 : fills the json document */
 
-         char value[1] = "1";
+        sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"X\": %6i, \"Y\": %6i,\"Z\": %6i}",
+                  atoi(value), datetime, acc_data.acc_x, acc_data.acc_y, acc_data.acc_z);                  
+         
+ 
+        /* step 2: publish data */
+        if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
+        printf("error: unable to publish data to topic '%s [%i]'\n",
+                topic.name, (int)topic.id);
+        return 0;
+        }
+
+        printf("Published %i bytes to topic '%s  [%i]'\n",
+            (int)strlen(json), topic.name, topic.id);
+
+        xtimer_periodic_wakeup(&last, DELAY);
+
+
+
+
+        /* Read the light sensor  values here */
+      
+        isl29020_t lumin;
+        printf("Intensity of luminescence: %5i LUX\n", isl29020_read(&lumin));
+        
+        xtimer_usleep(500 * US_PER_MS);
+        xtimer_ticks32_t last = xtimer_now();
+
+        /* Read the atmospheric pressure and temperature  values here */
+ 
+        uint16_t pres = 0;
+        int16_t temp = 0;
+        lpsxxx_read_pres(&lpsxxx, &pres);
+        lpsxxx_read_temp(&lpsxxx, &temp);
+       
+        printf("Pressure: %uhPa, Temperature: %u.%u°C\n",
+           pres, (temp / 100), (temp % 100));
+        
+        xtimer_sleep(2);
+        xtimer_usleep(500 * US_PER_MS);
+        xtimer_ticks32_t last = xtimer_now(); 
+   
+     
+        // takes the current date and time
+        time(&current);
+ 
+        tt = localtime(&current);
+        c = strftime(datetime, sizeof(datetime), "%Y-%m-%d %T", tt);
+        if(c == 0) {
+          printf("Error! Invalid format\n");
+          return 0;
+        } 
+        
    
         /* step 1:  fills the json document */
 
         sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"X\": %6i, \"Y\": %6i,\"Z\": %6i}",
-                  atoi(value), datetime, acc_data.acc_x, acc_data.acc_y, acc_data.acc_z);                  
-      //argv[2] = json;  
+                  atoi(value), datetime, acc_value.x_axis, acc_value.y_axis, acc_value.z_axis);                  
+        // argv[2] = json;  
          
  
-    /* step 2: publish data */
-      if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
+        /* step 2: publish data */
+        if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
         printf("error: unable to publish data to topic '%s [%i]'\n",
                 topic.name, (int)topic.id);
         return 0;
-      }
+        }
 
-      printf("Published %i bytes to topic '%s  [%i]'\n",
+        printf("Published %i bytes to topic '%s  [%i]'\n",
             (int)strlen(json), topic.name, topic.id);
 
-      xtimer_periodic_wakeup(&last, DELAY);
+        xtimer_periodic_wakeup(&last, DELAY);
 
 
-        /* Release the mutex here */
-    
-       mutex_unlock(&l3g_lock);
-      
-       xtimer_usleep(500 * US_PER_MS);
-    }
-
-    return 0;
-}
-
-static void *isl29020_thread(void *arg)
-{
-    (void)arg;
-    
-/* Add the isl29020 light sensor polling endless loop here */
-    
-    while (1) {
-        
-        /* Acquire the mutex here */
-    
-        mutex_lock(&isl_lock);
-
-        /* Read the light sensor  values here */
-      
-       isl29020_t lumin;
-       printf("Intensity of luminescence: %5i LUX\n", isl29020_read(&lumin));
-       xtimer_usleep(500 * US_PER_MS);
-       xtimer_ticks32_t last = xtimer_now();
-
-        /*json structure*/
-        char json[128];  
-
-        /*structure of time*/
-        char datetime[20];
-        time_t current;
-
-       // takes the current date and time
-    
-        time(&current);
-        struct tm* tt = localtime(&current);
-        int c = strftime(datetime, sizeof(datetime), "%Y-%m-%d %T", tt);
-        if(c == 0) {
-          printf("Error! Invalid format\n");
-          return 0;
-        } 
-
-    // takes the sample sensor data
-
-      char value[1] = "1";
-   
-    /* step 1:  fills the json document */
-
-    sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"LUMINESCENCE\": %5i}",
-                  atoi(value), datetime, isl29020_read(&lumin));                  
-      //argv[2] = json;  
-         
- 
-    /* step 2: publish data */
-      if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
-        printf("error: unable to publish data to topic '%s [%i]'\n",
-                topic.name, (int)topic.id);
-        return 0;
-      }
-
-      printf("Published %i bytes to topic '%s  [%i]'\n",
-            (int)strlen(json), topic.name, topic.id);
-
-       xtimer_periodic_wakeup(&last, DELAY);
-
-       
-       /* Release the mutex here */
-
-       mutex_unlock(&isl_lock);
-
-
-       xtimer_usleep(500 * US_PER_MS);
-    }
-
-    return 0;
-}
-
-
-static void *lpsxxx_thread(void *arg)
-{
-    (void)arg;
-    
-    /* Add the lpsxxx atmospheric pressure and temperature sensor polling endless loop here */
-    
-    while (1) {
-        
-        /* Acquire the mutex here */
-    
-        mutex_lock(&lps_lock);
 
         /* Read the atmospheric pressure and temperature  values here */
  
@@ -459,66 +382,56 @@ static void *lpsxxx_thread(void *arg)
         xtimer_usleep(500 * US_PER_MS);
   
         xtimer_ticks32_t last = xtimer_now(); 
-   
 
-        /*json structure*/
-        char json[128];  
-
-        /*structure of time*/
-        char datetime[20];
-        time_t current;
      
         // takes the current date and time
     
         time(&current);
-        struct tm* tt = localtime(&current);
-        int c = strftime(datetime, sizeof(datetime), "%Y-%m-%d %T", tt);
+        tt = localtime(&current);
+        c = strftime(datetime, sizeof(datetime), "%Y-%m-%d %T", tt);
         if(c == 0) {
           printf("Error! Invalid format\n");
           return 0;
         } 
     
-    // takes the sample sensor data
 
-     char value[1] = "1"; 
    
-    /* step 1:  fills the json document */
+        /* step 1:  fills the json document */
 
-    sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"PRESSURE\": %i, \"TEMPERATURE\": %i}",
+        sprintf(json, "{\"id\": \"%d\", \"datetime\": \"%s\", \"PRESSURE\": %i, \"TEMPERATURE\": %i}",
                   atoi(value), datetime, pres, temp);                  
-     // argv[2] = json;  
+    
          
  
-    /* step 2: publish data */
-      if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
+       /* step 2: publish data */
+       if (emcute_pub(&topic, json, strlen(json), flags) != EMCUTE_OK) {
         printf("error: unable to publish data to topic '%s [%i]'\n",
                 topic.name, (int)topic.id);
         return 0;
-      }
+       }
 
-      printf("Published %i bytes to topic '%s  [%i]'\n",
+       printf("Published %i bytes to topic '%s  [%i]'\n",
             (int)strlen(json), topic.name, topic.id);
 
-      xtimer_periodic_wakeup(&last, DELAY);
+       xtimer_periodic_wakeup(&last, DELAY);
   
-    /*   gpio_toggle(pin);*/   
+   
+       // it sleeps for five seconds
+       xtimer_sleep(5);            
+
+
   
-  
-    // it sleeps for five seconds
-      xtimer_sleep(5);            
-
-
-
-
         /* Release the mutex here */
-
-        mutex_unlock(&lps_lock);
+        
+        mutex_unlock(&lsm_lock);
+  
       
         xtimer_usleep(500 * US_PER_MS);
     }
 
     return 0;
 }
+
 
 static void _lsm303dlhc_usage(char *cmd)
 {
@@ -926,7 +839,15 @@ int main(void)
     /*thread_create(emcute_stack, sizeof(emcute_stack), EMCUTE_PRIO, 0,
                   emcute_thread, NULL, "emcute"); */
 
-
+     /*This four threads provide with continuous readings. while the shell, which is a separate thread (the main)
+    provide with start/stop readings*/
+ 
+   
+  
+    /* Perform sensor readings  on a separate thread in order to host a shell on the main thread*/  
+    thread_create(sensor_stack, sizeof(sensor_stack), THREAD_PRIORITY_MAIN - 1,
+                  0, sensor_thread, NULL, "sensor");
+     
      
     /* Everything is ready, let's start the shell now */
     char line_buf[SHELL_DEFAULT_BUFSIZE];
