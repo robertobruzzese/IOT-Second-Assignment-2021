@@ -1,1 +1,650 @@
+rbruzzes@saclay:~$ ssh root@node-a8-100
 
+root@node-a8-100:~# 
+root@node-a8-100:~# vi config.conf
+root@node-a8-100:~# broker_mqtts config.conf
+20210801 131344.708 CWNAN9999I Really Small Message Broker
+20210801 131344.717 CWNAN9998I Part of Project Mosquitto in Eclipse
+(http://projects.eclipse.org/projects/technology.mosquitto)
+20210801 131344.721 CWNAN0049I Configuration file name is config.conf
+20210801 131344.738 CWNAN0053I Version 1.3.0.2, May  3 2021 03:48:22
+20210801 131344.741 CWNAN0054I Features included: bridge MQTTS 
+20210801 131344.744 CWNAN9993I Authors: Ian Craggs (icraggs@uk.ibm.com), Nicholas O'Leary
+20210801 131344.752 CWNAN0300I MQTT-S protocol starting, listening on port 1885
+20210801 131344.756 CWNAN0014I MQTT protocol starting, listening on port 1886
+20210801 131408.820 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131408.824 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131408.829 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883)
+20210801 131408.961 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4660 qos: 2 topicId�
+20210801 131408.965 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S SUBACK msgid: 4660 topicid: 1 return�
+20210801 131409.065 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S REGISTER msgid: 4661 topicid: 0 topi�
+20210801 131409.065 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S REGACK msgid: 4661 topicid: 1 return�
+20210801 131409.174 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4662 (0)
+20210801 131409.273 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 131409.278 CWNAN0038I Disconnection request received from client gertrud2
+20210801 131409.281 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 131434.434 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131434.444 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131434.448 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcb3:8d16:332f:650d:1883)
+20210801 131434.501 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4660 qos: 2 topicId�
+20210801 131434.505 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S SUBACK msgid: 4660 topicid: 1 return
+20210801 131434.606 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S REGISTER msgid: 4661 topicid: 0 topi�
+20210801 131434.606 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S REGACK msgid: 4661 topicid: 1 return�
+20210801 131434.714 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4662 (0)
+20210801 131434.814 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 131434.817 CWNAN0038I Disconnection request received from client gertrud2
+20210801 131434.820 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 131508.533 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131508.536 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131508.540 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883)
+20210801 131508.634 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4660 qos: 2 topicId�
+20210801 131508.638 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S SUBACK msgid: 4660 topicid: 1 return�
+20210801 131508.734 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S REGISTER msgid: 4661 topicid: 0 topiE
+20210801 131508.734 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S REGACK msgid: 4661 topicid: 1 return�
+20210801 131508.839 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4662 (0)
+20210801 131508.935 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 131508.937 CWNAN0038I Disconnection request received from client gertrud2
+20210801 131508.941 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 131538.627 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131538.640 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131538.645 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 131553.624 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 131553.627 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 131553.630 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131553.634 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 131608.629 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 131608.634 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 131608.637 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131608.640 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 131622.679 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 131623.671 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 131623.675 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131623.678 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 131631.676 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131631.679 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883, ending oldest connection
+20210801 131631.682 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131631.686 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883)
+20210801 131631.752 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4660 qos: 2 topicId�
+20210801 131631.755 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S SUBACK msgid: 4660 topicid: 1 return�
+20210801 131631.852 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S REGISTER msgid: 4661 topicid: 0 topi
+20210801 131631.852 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S REGACK msgid: 4661 topicid: 1 return
+20210801 131631.952 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4662 (0)
+20210801 131632.048 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 131632.050 CWNAN0038I Disconnection request received from client gertrud2
+20210801 131632.054 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 131655.767 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131655.780 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131655.785 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 131709.821 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 131710.811 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ac36:11d3:97f:570d:1883, ending oldest connection
+20210801 131710.814 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131710.817 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 131725.122 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131725.126 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a451:fab5:220d:a685:1883, ending oldest connection
+20210801 131725.129 70180 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131725.133 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a451:fab5:220d:a685:1883)
+20210801 131725.228 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4660 qos: 2 topicId�
+20210801 131725.231 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S SUBACK msgid: 4660 topicid: 1 return�
+20210801 131725.332 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S REGISTER msgid: 4661 topicid: 0 topi�
+20210801 131725.332 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S REGACK msgid: 4661 topicid: 1 return�
+20210801 131725.433 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4662 (0)
+20210801 131725.524 70180 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 131725.526 CWNAN0038I Disconnection request received from client gertrud2
+20210801 131725.530 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 131725.813 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131725.816 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131725.818 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 131739.855 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 131740.774 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ac36:11d3:97f:570d:1883, ending oldest connection
+20210801 131740.777 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131740.781 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 131746.203 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S PINGRESP (0)
+20210801 131750.218 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131751.166 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 131751.169 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131751.174 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 131806.121 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 131806.131 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 131806.135 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131806.138 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 131809.373 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131809.377 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883, ending oldest connection
+20210801 131809.380 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131809.384 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883)
+20210801 131809.441 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4663 qos: 2 topicId�
+20210801 131809.445 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S SUBACK msgid: 4663 topicid: 1 returnQ
+20210801 131809.541 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S REGISTER msgid: 4664 topicid: 0 topi0
+20210801 131809.541 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S REGACK msgid: 4664 topicid: 1 return
+20210801 131809.646 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4665 (0)
+20210801 131809.742 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 131809.745 CWNAN0038I Disconnection request received from client gertrud2
+20210801 131809.748 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 131821.129 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131821.132 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131821.136 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 131834.913 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131834.916 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883, ending oldest connection
+20210801 131834.920 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131834.924 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcb3:8d16:332f:650d:1883)
+20210801 131834.980 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4663 qos: 2 topicId�
+20210801 131834.985 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S SUBACK msgid: 4663 topicid: 1 return�
+20210801 131835.084 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S REGISTER msgid: 4664 topicid: 0 topi�
+20210801 131835.084 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S REGACK msgid: 4664 topicid: 1 returnE
+20210801 131835.189 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4665 (0)
+20210801 131835.280 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 131835.283 CWNAN0038I Disconnection request received from client gertrud2
+20210801 131835.286 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 131836.165 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131836.169 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131836.172 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 131908.249 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 131909.005 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883, ending oldest connection
+20210801 131909.008 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 131909.011 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883)
+20210801 131909.104 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4663 qos: 2 topicId�
+20210801 131909.107 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S SUBACK msgid: 4663 topicid: 1 return�
+20210801 131909.204 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S REGISTER msgid: 4664 topicid: 0 topi�
+20210801 131909.204 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S REGACK msgid: 4664 topicid: 1 returnE
+20210801 131909.312 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4665 (0)
+20210801 131909.412 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 131909.414 CWNAN0038I Disconnection request received from client gertrud2
+20210801 131909.418 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 132032.100 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132032.111 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132032.115 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883)
+20210801 132032.203 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4663 qos: 2 topicId�
+20210801 132032.207 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S SUBACK msgid: 4663 topicid: 1 return�
+20210801 132032.304 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S REGISTER msgid: 4664 topicid: 0 topiE
+20210801 132032.304 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S REGACK msgid: 4664 topicid: 1 return�
+20210801 132032.408 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4665 (0)
+20210801 132032.500 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 132032.502 CWNAN0038I Disconnection request received from client gertrud2
+20210801 132032.506 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 132038.523 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132038.635 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132038.640 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 132053.635 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 132053.639 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 132053.642 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132053.646 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 132108.672 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 132108.676 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 132108.679 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132108.682 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 132122.721 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 132123.679 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 132123.682 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132123.686 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 132125.624 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132125.627 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a451:fab5:220d:a685:1883, ending oldest connection
+20210801 132125.630 70180 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132125.634 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a451:fab5:220d:a685:1883)
+20210801 132125.692 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4663 qos: 2 topicId�
+20210801 132125.695 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S SUBACK msgid: 4663 topicid: 1 return
+20210801 132125.791 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S REGISTER msgid: 4664 topicid: 0 topi&
+20210801 132125.791 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S REGACK msgid: 4664 topicid: 1 return�
+20210801 132125.896 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4665 (0)
+20210801 132125.992 70180 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 132125.995 CWNAN0038I Disconnection request received from client gertrud2
+20210801 132125.998 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 132155.774 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132155.785 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132155.789 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 132209.844 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132209.847 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883, ending oldest connection
+20210801 132209.851 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132209.855 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883)
+20210801 132209.912 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4666 qos: 2 topicId�
+20210801 132209.915 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S SUBACK msgid: 4666 topicid: 1 return�
+20210801 132210.012 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S REGISTER msgid: 4667 topicid: 0 topi�
+20210801 132210.012 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S REGACK msgid: 4667 topicid: 1 returnE
+20210801 132210.120 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4668 (0)
+20210801 132210.212 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 132210.214 CWNAN0038I Disconnection request received from client gertrud2
+20210801 132210.218 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 132210.816 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132210.819 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132210.822 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 132225.776 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 132225.779 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ac36:11d3:97f:570d:1883, ending oldest connection
+20210801 132225.782 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132225.786 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 132235.384 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132235.387 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883, ending oldest connection
+20210801 132235.391 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132235.395 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcb3:8d16:332f:650d:1883)
+20210801 132235.455 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4666 qos: 2 topicId�
+20210801 132235.459 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S SUBACK msgid: 4666 topicid: 1 return�
+20210801 132235.555 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S REGISTER msgid: 4667 topicid: 0 topi�
+20210801 132235.555 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S REGACK msgid: 4667 topicid: 1 returnE
+20210801 132235.660 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4668 (0)
+20210801 132235.752 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 132235.755 CWNAN0038I Disconnection request received from client gertrud2
+20210801 132235.758 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 132240.773 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132240.823 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132240.827 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 132251.133 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132251.136 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 132251.139 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132251.144 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 132306.172 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 132306.183 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 132306.186 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132306.189 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 132309.474 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132309.477 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883, ending oldest connection
+20210801 132309.480 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132309.484 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883)
+20210801 132309.572 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4666 qos: 2 topicId�
+20210801 132309.575 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S SUBACK msgid: 4666 topicid: 1 returnQ
+20210801 132309.676 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S REGISTER msgid: 4667 topicid: 0 topi0
+20210801 132309.676 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S REGACK msgid: 4667 topicid: 1 return
+20210801 132309.780 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4668 (0)
+20210801 132309.872 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 132309.875 CWNAN0038I Disconnection request received from client gertrud2
+20210801 132309.878 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 132321.177 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132321.180 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132321.184 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 132336.134 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 132336.137 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 132336.141 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132336.144 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 132346.241 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S PINGRESP (0)
+20210801 132432.605 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132432.616 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883, ending oldest connection
+20210801 132432.619 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132432.622 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883)
+20210801 132432.681 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4666 qos: 2 topicId�
+20210801 132432.684 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S SUBACK msgid: 4666 topicid: 1 return�
+20210801 132432.785 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S REGISTER msgid: 4667 topicid: 0 topi�
+20210801 132432.785 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S REGACK msgid: 4667 topicid: 1 returnE
+20210801 132432.889 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4668 (0)
+20210801 132432.981 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 132432.985 CWNAN0038I Disconnection request received from client gertrud2
+20210801 132432.988 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 132526.051 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132526.055 70180 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132526.058 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a451:fab5:220d:a685:1883)
+20210801 132526.153 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4666 qos: 2 topicId�
+20210801 132526.157 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S SUBACK msgid: 4666 topicid: 1 return�
+20210801 132526.253 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S REGISTER msgid: 4667 topicid: 0 topiE
+20210801 132526.253 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S REGACK msgid: 4667 topicid: 1 return�
+20210801 132526.358 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4668 (0)
+20210801 132526.449 70180 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 132526.452 CWNAN0038I Disconnection request received from client gertrud2
+20210801 132526.455 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 132538.650 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132538.661 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132538.665 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 132553.643 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 132553.647 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 132553.650 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132553.654 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 132608.646 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 132608.650 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 132608.654 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132608.657 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 132610.313 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132610.316 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883, ending oldest connection
+20210801 132610.320 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132610.324 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883)
+20210801 132610.377 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4669 qos: 2 topicIdB
+20210801 132610.380 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S SUBACK msgid: 4669 topicid: 1 return�
+20210801 132610.473 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S REGISTER msgid: 4670 topicid: 0 topi0
+20210801 132610.473 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S REGACK msgid: 4670 topicid: 1 return
+20210801 132610.578 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4671 (0)
+20210801 132610.673 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 132610.675 CWNAN0038I Disconnection request received from client gertrud2
+20210801 132610.679 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 132623.648 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132623.651 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132623.655 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 132635.812 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132635.816 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883, ending oldest connection
+20210801 132635.819 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132635.823 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcb3:8d16:332f:650d:1883)
+20210801 132635.914 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4669 qos: 2 topicId�
+20210801 132635.917 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S SUBACK msgid: 4669 topicid: 1 return�
+20210801 132636.013 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S REGISTER msgid: 4670 topicid: 0 topi
+20210801 132636.013 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S REGACK msgid: 4670 topicid: 1 return
+20210801 132636.118 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4671 (0)
+20210801 132636.214 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 132636.216 CWNAN0038I Disconnection request received from client gertrud2
+20210801 132636.219 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 132655.787 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132655.798 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132655.802 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 132709.932 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132709.935 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883, ending oldest connection
+20210801 132709.939 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132709.943 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883)
+20210801 132710.034 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4669 qos: 2 topicId�
+20210801 132710.037 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S SUBACK msgid: 4669 topicid: 1 return�
+20210801 132710.134 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S REGISTER msgid: 4670 topicid: 0 topi�
+20210801 132710.134 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S REGACK msgid: 4670 topicid: 1 returnE
+20210801 132710.242 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4671 (0)
+20210801 132710.334 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 132710.336 CWNAN0038I Disconnection request received from client gertrud2
+20210801 132710.339 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 132710.830 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132710.833 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132710.836 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 132725.830 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 132725.833 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ac36:11d3:97f:570d:1883, ending oldest connection
+20210801 132725.837 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132725.840 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 132739.877 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 132740.791 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ac36:11d3:97f:570d:1883, ending oldest connection
+20210801 132740.795 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132740.797 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 132751.147 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132751.150 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 132751.154 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132751.158 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 132806.148 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 132806.159 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 132806.162 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132806.165 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 132820.202 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 132821.189 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 132821.192 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132821.196 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 132833.086 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132833.089 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883, ending oldest connection
+20210801 132833.092 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132833.096 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883)
+20210801 132833.158 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4669 qos: 2 topicId�
+20210801 132833.161 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S SUBACK msgid: 4669 topicid: 1 return�
+20210801 132833.258 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S REGISTER msgid: 4670 topicid: 0 topi�
+20210801 132833.258 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S REGACK msgid: 4670 topicid: 1 returnE
+20210801 132833.363 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4671 (0)
+20210801 132833.458 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 132833.461 CWNAN0038I Disconnection request received from client gertrud2
+20210801 132833.464 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 132836.187 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132836.191 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132836.194 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 132926.515 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 132926.526 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a451:fab5:220d:a685:1883, ending oldest connection
+20210801 132926.529 70180 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 132926.533 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a451:fab5:220d:a685:1883)
+20210801 132926.627 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4669 qos: 2 topicId�
+20210801 132926.630 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S SUBACK msgid: 4669 topicid: 1 return�
+20210801 132926.731 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S REGISTER msgid: 4670 topicid: 0 topi�
+20210801 132926.731 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S REGACK msgid: 4670 topicid: 1 returnE
+20210801 132926.831 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4671 (0)
+20210801 132926.923 70180 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 132926.925 CWNAN0038I Disconnection request received from client gertrud2
+20210801 132926.928 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133010.027 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133010.737 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133010.742 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883)
+20210801 133010.839 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4672 qos: 2 topicId�
+20210801 133010.842 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S SUBACK msgid: 4672 topicid: 1 return
+20210801 133010.939 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S REGISTER msgid: 4673 topicid: 0 topi�
+20210801 133010.939 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S REGACK msgid: 4673 topicid: 1 return�
+20210801 133011.044 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4674 (0)
+20210801 133011.135 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133011.137 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133011.141 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133036.276 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133036.289 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133036.291 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcb3:8d16:332f:650d:1883)
+20210801 133036.387 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4672 qos: 2 topicId�
+20210801 133036.390 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S SUBACK msgid: 4672 topicid: 1 return
+20210801 133036.487 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S REGISTER msgid: 4673 topicid: 0 topi[
+20210801 133036.487 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S REGACK msgid: 4673 topicid: 1 return
+20210801 133036.591 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4674 (0)
+20210801 133036.683 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133036.685 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133036.689 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133038.696 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133038.700 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133038.703 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 133053.656 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133053.660 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 133053.664 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133053.667 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 133108.696 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133108.698 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 133108.701 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133108.705 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 133110.435 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133110.438 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883, ending oldest connection
+20210801 133110.441 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133110.445 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883)
+20210801 133110.499 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4672 qos: 2 topicId�
+20210801 133110.502 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S SUBACK msgid: 4672 topicid: 1 return�
+20210801 133110.595 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S REGISTER msgid: 4673 topicid: 0 topi/
+20210801 133110.595 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S REGACK msgid: 4673 topicid: 1 return4
+20210801 133110.704 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4674 (0)
+20210801 133110.795 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133110.798 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133110.801 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133123.659 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133123.663 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133123.667 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 133155.840 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133155.851 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ac36:11d3:97f:570d:1883, ending oldest connection
+20210801 133155.855 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133155.859 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 133210.801 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133210.805 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ac36:11d3:97f:570d:1883, ending oldest connection
+20210801 133210.808 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133210.811 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 133225.840 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133225.843 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ac36:11d3:97f:570d:1883, ending oldest connection
+20210801 133225.846 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133225.849 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 133233.518 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133233.521 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883, ending oldest connection
+20210801 133233.525 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133233.529 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883)
+20210801 133233.532 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133233.534 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883, ending oldest connection
+20210801 133233.538 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133233.540 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883)
+20210801 133233.616 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4672 qos: 2 topicId�
+20210801 133233.619 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S SUBACK msgid: 4672 topicid: 1 return0
+20210801 133233.720 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S REGISTER msgid: 4673 topicid: 0 topi
+20210801 133233.720 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S REGACK msgid: 4673 topicid: 1 return
+20210801 133233.824 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4674 (0)
+20210801 133233.916 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133233.919 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133233.922 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133240.845 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133240.848 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133240.851 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 133250.878 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133251.158 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 133251.161 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133251.166 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 133306.197 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133306.209 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 133306.212 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133306.215 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 133321.159 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133321.162 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 133321.166 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133321.169 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 133327.025 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133327.028 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a451:fab5:220d:a685:1883, ending oldest connection
+20210801 133327.031 70180 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133327.035 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a451:fab5:220d:a685:1883)
+20210801 133327.093 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4672 qos: 2 topicId�
+20210801 133327.096 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S SUBACK msgid: 4672 topicid: 1 return�
+20210801 133327.189 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S REGISTER msgid: 4673 topicid: 0 topi�
+20210801 133327.189 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S REGACK msgid: 4673 topicid: 1 return�
+20210801 133327.293 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4674 (0)
+20210801 133327.385 70180 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133327.387 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133327.390 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133336.158 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133336.162 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133336.166 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 133411.198 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133411.208 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883, ending oldest connection
+20210801 133411.211 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133411.215 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883)
+20210801 133411.309 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4675 qos: 2 topicId�
+20210801 133411.312 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S SUBACK msgid: 4675 topicid: 1 return�
+20210801 133411.409 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S REGISTER msgid: 4676 topicid: 0 topi�
+20210801 133411.409 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S REGACK msgid: 4676 topicid: 1 returnE
+20210801 133411.518 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4677 (0)
+20210801 133411.617 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133411.620 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133411.623 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133436.747 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133436.751 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133436.754 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcb3:8d16:332f:650d:1883)
+20210801 133436.849 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4675 qos: 2 topicId�
+20210801 133436.852 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S SUBACK msgid: 4675 topicid: 1 return
+20210801 133436.949 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S REGISTER msgid: 4676 topicid: 0 topi[
+20210801 133436.949 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S REGACK msgid: 4676 topicid: 1 return
+20210801 133437.054 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4677 (0)
+20210801 133437.145 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133437.147 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133437.150 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133510.856 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133510.859 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133510.864 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883)
+20210801 133510.960 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4675 qos: 2 topicId�
+20210801 133510.964 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S SUBACK msgid: 4675 topicid: 1 return
+20210801 133511.056 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S REGISTER msgid: 4676 topicid: 0 topi�
+20210801 133511.056 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S REGACK msgid: 4676 topicid: 1 return�
+20210801 133511.161 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4677 (0)
+20210801 133511.252 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133511.264 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133511.267 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133538.668 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133538.671 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133538.675 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 133546.266 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S PINGRESP (0)
+20210801 133553.709 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133553.712 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 133553.715 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133553.719 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 133607.753 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133608.671 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 133608.675 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133608.679 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 133623.709 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133623.719 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 133623.722 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133623.726 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 133634.017 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133634.019 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883, ending oldest connection
+20210801 133634.023 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133634.026 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883)
+20210801 133634.084 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4675 qos: 2 topicId�
+20210801 133634.087 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S SUBACK msgid: 4675 topicid: 1 return�
+20210801 133634.188 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S REGISTER msgid: 4676 topicid: 0 topi�
+20210801 133634.188 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S REGACK msgid: 4676 topicid: 1 returnE
+20210801 133648.225 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S REGISTER msgid: 4676 topicid: 0 topi�
+20210801 133649.149 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S REGACK msgid: 4676 topicid: 1 return�
+20210801 133649.252 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4677 (0)
+20210801 133649.344 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133649.347 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133649.350 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133655.367 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133655.855 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133655.860 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 133710.852 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133710.856 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ac36:11d3:97f:570d:1883, ending oldest connection
+20210801 133710.859 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133710.862 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 133725.852 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133725.863 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ac36:11d3:97f:570d:1883, ending oldest connection
+20210801 133725.867 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133725.870 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 133727.484 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133727.487 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a451:fab5:220d:a685:1883, ending oldest connection
+20210801 133727.490 70180 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133727.495 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a451:fab5:220d:a685:1883)
+20210801 133727.552 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4675 qos: 2 topicId�
+20210801 133727.555 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S SUBACK msgid: 4675 topicid: 1 return�
+20210801 133727.648 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S REGISTER msgid: 4676 topicid: 0 topi/
+20210801 133727.648 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S REGACK msgid: 4676 topicid: 1 return4
+20210801 133727.752 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4677 (0)
+20210801 133727.844 70180 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133727.846 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133727.850 3 2001:660:3207:4c1:a451:fab5:220d:a685:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133740.813 3 2001:660:3207:4c1:ac36:11d3:97f:570d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133740.817 70180 2001:660:3207:4c1:ac36:11d3:97f:570d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133740.820 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ac36:11d3:97f:570d:1883)
+20210801 133750.847 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133751.170 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 133751.174 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133751.177 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 133806.208 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133806.211 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 133806.214 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133806.217 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 133811.674 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133811.677 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883, ending oldest connection
+20210801 133811.681 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133811.685 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883)
+20210801 133811.779 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4678 qos: 2 topicId�
+20210801 133811.782 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S SUBACK msgid: 4678 topicid: 1 return�
+20210801 133811.875 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S REGISTER msgid: 4679 topicid: 0 topi
+20210801 133811.875 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S REGACK msgid: 4679 topicid: 1 return
+20210801 133811.984 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4680 (0)
+20210801 133812.072 70180 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133812.075 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133812.078 3 2001:660:3207:4c1:ec19:4de3:d3ba:1732:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133821.228 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133821.232 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133821.235 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 133835.271 3 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 133836.178 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883, ending oldest connection
+20210801 133836.181 70180 2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133836.184 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:e4d3:6fec:df36:bbe:1883)
+20210801 133837.247 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133837.250 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883, ending oldest connection
+20210801 133837.254 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133837.258 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcb3:8d16:332f:650d:1883)
+20210801 133837.315 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4678 qos: 2 topicId
+20210801 133837.318 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S SUBACK msgid: 4678 topicid: 1 return
+20210801 133837.419 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S REGISTER msgid: 4679 topicid: 0 topi
+20210801 133837.419 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S REGACK msgid: 4679 topicid: 1 return
+20210801 133837.524 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4680 (0)
+20210801 133837.615 70180 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133837.617 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133837.621 3 2001:660:3207:4c1:bcb3:8d16:332f:650d:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 133911.324 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 133911.328 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 133911.332 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883)
+20210801 133911.427 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4678 qos: 2 topicId�
+20210801 133911.430 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S SUBACK msgid: 4678 topicid: 1 return
+20210801 133911.527 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S REGISTER msgid: 4679 topicid: 0 topi�
+20210801 133911.527 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S REGACK msgid: 4679 topicid: 1 return�
+20210801 133911.631 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4680 (0)
+20210801 133911.723 70180 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 133911.725 CWNAN0038I Disconnection request received from client gertrud2
+20210801 133911.729 3 2001:660:3207:4c1:f834:ce91:b6e3:b2b7:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 134038.679 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 134038.692 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 134038.694 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 134048.721 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 134049.407 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883, ending oldest connection
+20210801 134049.411 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 134049.415 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883)
+20210801 134049.506 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S SUBSCRIBE msgid: 4678 qos: 2 topicId�
+20210801 134049.510 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S SUBACK msgid: 4678 topicid: 1 return�
+20210801 134049.606 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S REGISTER msgid: 4679 topicid: 0 topi�
+20210801 134049.606 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S REGACK msgid: 4679 topicid: 1 return�
+20210801 134049.711 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S UNSUBACK msgid: 4680 (0)
+20210801 134049.803 70180 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 <- MQTT-S DISCONNECT duration: 0
+20210801 134049.805 CWNAN0038I Disconnection request received from client gertrud2
+20210801 134049.808 3 2001:660:3207:4c1:bcf3:8fed:b1cc:65ac:1883 gertrud2 -> MQTT-S DISCONNECT duration: 0 (0)
+20210801 134053.719 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883  <- MQTT-S CONNECT cleansession: 1
+20210801 134053.723 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 134053.727 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+20210801 134107.761 3 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 <- MQTT-S CONNECT cleansession: 1
+20210801 134108.722 CWNAN0034I Duplicate connection attempt received for client identifier "gertrud2" from address 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883, ending oldest connection
+20210801 134108.726 70180 2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883 gertrud2 -> MQTT-S CONNACK returncode 0 (0)
+20210801 134108.730 CWNAN0000I Client connected to udp port 1885 from gertrud2 (2001:660:3207:4c1:a411:6a6e:1ae6:cb4:1883)
+client_loop: send disconnect: Broken pipe
+robertobruzzese@robertobruzzese-VirtualBox:~$
