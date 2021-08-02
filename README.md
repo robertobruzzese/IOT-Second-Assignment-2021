@@ -1,19 +1,5 @@
 # IOT-Second-Assignment-2021
-IOT-Lab M3 node application 
 
-
-
-https://github.com/robertobruzzese/IOT-Second-Assignment-2021/blob/main/Technical_Description_Boards.pdf
-
-https://github.com/robertobruzzese/IOT-Second-Assignment-2021/blob/main/Points_addressed_In_the_Assignment.pdf
-
-
-https://github.com/robertobruzzese/IOT-Second-Assignment-2021/blob/main/Walk-through-guide.pdf
-
-
-
-https://github.com/robertobruzzese/IOT-Second-Assignment-2021/tree/main/Performances
-
-
-https://github.com/robertobruzzese/IOT-Second-Assignment-2021/tree/main/Application
-
+This second assignment is a continuation of the first one where we replace the core32 board with the M3 node. This node is equipped with more sensors and the iot-lab architecture allows to verify the scalability of these sensors as clients of a cloud connected architecture. The provision of a radio on these nodes allows the creation of a mesh network, and each device can send its own device data in a manner similar to wsn networks.  I developed a program that reads the data from the four sensors on the M3 board and sends it to the MQTT Broker. This in turn, leveraging the architecture built in the first assignment , connects with the AWS cloud , to display the data in the dashboard easily built with Grafana.
+In the document https://github.com/robertobruzzese/IOT-Second-Assignment-2021/blob/main/Technical_Description_Boards.pdf there is a technical description of the nodes used in the platform that, we remind you, is highly scalable.
+In the document https://github.com/robertobruzzese/IOT-Second-Assignment-2021/blob/main/Points_addressed_In_the_Assignment.pdf is reported an analysis to the points of discussion in this assignment. In the document https://github.com/robertobruzzese/IOT-Second-Assignment-2021/blob/main/Walk-through-guide.pdf there is a synthetic guide of the steps to set up and execute the experiments in the lab. In the document https://github.com/robertobruzzese/IOT-Second-Assignment-2021/tree/main/Application are reported the source codes of the programs used as firmware applications of the single M3 nodes, and the related makefiles.  In the document https://github.com/robertobruzzese/IOT-Second-Assignment-2021/tree/main/Performances are reported the results of the experiments performed.
